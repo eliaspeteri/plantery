@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import styles from '../styles/SearchResult.module.css';
 import { Plant } from '../types';
@@ -9,7 +10,14 @@ interface Props {
 const SearchResult = ({ result }: Props) => {
   return (
     <div className={styles.result}>
-      {result.name} (<i>{result.scientificName}</i>)
+      <Link
+        href='/[plant]'
+        as={`/${result.name?.toLocaleLowerCase().replace(' ', '-')}`}
+      >
+        <a>
+          {result.name} (<i>{result.scientificName}</i>)
+        </a>
+      </Link>
     </div>
   );
 };
