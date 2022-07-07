@@ -22,5 +22,11 @@
     "name": "Yucca palm",
     "scientificName": "Yucca brevifolia",
     "createdAt": "2022-07-07"
+  },
+  {
+    "id": "zanzibar-gem",
+    "name": "Zanzibar gem",
+    "scientificName": "Zamioculcas",
+    "createdAt": "2022-07-07"
   }
 ]
