@@ -1,0 +1,12 @@
+.list {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.plant {
+  padding: 1rem;
+}
+
+.plant:hover {
+  background-color: #f5f5f5;
+}
