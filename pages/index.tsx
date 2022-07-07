@@ -15,9 +15,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <Link href='/plants'>
-          <a>Plants</a>
-        </Link>
+        <h1 className={styles.title}>Plantery</h1>
         <Searchbar />
       </main>
 
