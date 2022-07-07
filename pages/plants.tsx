@@ -4,12 +4,13 @@ import { Plant } from '../types';
 import data from '../data/plants.json';
 
 import styles from '../styles/Plant.module.css';
+import { NextPage } from 'next';
 
 interface Props {
   plants: Plant[];
 }
 
-const Plants = ({ plants }: Props) => {
+const PlantsPage: NextPage<Props> = ({ plants }: Props) => {
   return (
     <div>
       <div className={styles.list}>
@@ -29,7 +30,7 @@ const Plants = ({ plants }: Props) => {
   );
 };
 
-export default Plants;
+export default PlantsPage;
 
 export async function getStaticProps() {
   return {
