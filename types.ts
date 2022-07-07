@@ -55,3 +55,7 @@ export interface Session {
   user: User;
   token: string;
 }
+
+export interface Errors {
+  [key: string]: string;
+}
