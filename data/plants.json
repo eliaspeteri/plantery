@@ -1,6 +1,6 @@
 [
   {
-    "id": "1",
+    "id": "dumb-cane",
     "name": "Dumb cane",
     "scientificName": "Dieffenbachia",
     "createdAt": "2022-07-07",
@@ -18,7 +18,7 @@
     }
   },
   {
-    "id": "2",
+    "id": "yucca-palm",
     "name": "Yucca palm",
     "scientificName": "Yucca brevifolia",
     "createdAt": "2022-07-07"
