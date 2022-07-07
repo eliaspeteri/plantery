@@ -1,6 +1,6 @@
 export interface Plant {
   id: string;
-  name?: string;
+  name: string;
   scientificName: string;
   description?: string;
   cultivation?: Cultivation;
