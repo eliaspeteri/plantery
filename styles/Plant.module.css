@@ -1,6 +1,7 @@
 .list {
   display: inline-flex;
   flex-direction: column;
+  margin: 1rem;
 }
 
 .plant {
