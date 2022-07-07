@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "name": "Dumb cane",
+    "scientificName": "Dieffenbachia",
+    "createdAt": "2022-07-07",
+    "cultivation": {
+      "temperature": {
+        "min": 5,
+        "max": 27
+      },
+      "water": {
+        "timesPerMonth": 8
+      },
+      "fertilizer": {
+        "timesPerMonth": 4
+      }
+    }
+  },
+  {
+    "id": "2",
+    "name": "Yucca palm",
+    "scientificName": "Yucca brevifolia",
+    "createdAt": "2022-07-07"
+  }
+]
