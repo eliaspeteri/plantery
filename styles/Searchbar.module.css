@@ -1,0 +1,7 @@
+.searchbar {
+  width: 80vw;
+  height: 5vh;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
