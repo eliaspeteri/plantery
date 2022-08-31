@@ -5,10 +5,13 @@ import React from 'react';
 import { Errors } from '../types';
 
 import styles from '../styles/Form.module.css';
+import fieldStyles from '../styles/Field.module.css';
+import Link from 'next/link';
+import Button from '../components/Button';
 
 const LoginPage: NextPage = () => {
   return (
-    <div>
+    <div className='center'>
       <Head>
         <title>Plantery | Login</title>
       </Head>
@@ -40,7 +43,11 @@ const LoginPage: NextPage = () => {
             <div className={styles.row}>
               <div className={styles.rowItem}>
                 <label htmlFor='email'>Email *</label>
-                <Field name='email' type='email' required />
+                <Field
+                  name='email'
+                  type='email'
+                  className={fieldStyles.input}
+                />
                 <ErrorMessage
                   name='email'
                   component='div'
@@ -51,7 +58,11 @@ const LoginPage: NextPage = () => {
             <div className={styles.row}>
               <div className={styles.rowItem}>
                 <label htmlFor='password'>Password *</label>
-                <Field name='password' type='password' required />
+                <Field
+                  name='password'
+                  type='password'
+                  className={fieldStyles.input}
+                />
                 <ErrorMessage
                   name='password'
                   component='div'
@@ -60,13 +71,21 @@ const LoginPage: NextPage = () => {
               </div>
             </div>
             <div className={styles.row}>
-              <button type='submit' disabled={isSubmitting}>
+              <Button type='submit' disabled={isSubmitting}>
                 Submit
-              </button>
+              </Button>
             </div>
           </Form>
         )}
       </Formik>
+      <div>
+        <Link href='/register' className={styles.row}>
+          <a className={styles.rowItem}>Create a new account</a>
+        </Link>
+        <Link href='/password-reset' className={styles.row}>
+          <a className={styles.rowItem}>Forgot password?</a>
+        </Link>
+      </div>
     </div>
   );
 };

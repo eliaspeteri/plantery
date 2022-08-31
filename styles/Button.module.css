@@ -1,0 +1,8 @@
+.button {
+  margin: 2vh auto;
+  padding: 2vh 6vw;
+  background-color: lightgreen;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}

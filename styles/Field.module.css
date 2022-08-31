@@ -1,0 +1,33 @@
+.input {
+  padding: 1vh;
+  height: 6vh;
+  min-height: 6vh;
+  max-height: 40vh;
+  min-width: 20vw;
+  max-width: 44vw;
+  background-color: gainsboro;
+  border: none;
+  border-radius: 8px;
+}
+
+.narrow {
+  width: 10vw;
+}
+
+.normal {
+  width: 20vw;
+}
+
+.dropdown {
+  text-align: center;
+  padding-left: 1vw;
+  height: 4vh;
+  border: none;
+  border-radius: 8px;
+  background-color: gainsboro;
+}
+
+.dropdown:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
