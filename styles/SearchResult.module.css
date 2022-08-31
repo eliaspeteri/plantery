@@ -17,3 +17,8 @@
   animation-name: spawn;
   animation-duration: 0.5s;
 }
+
+.result > a {
+  display: block;
+  width: 100%;
+}
