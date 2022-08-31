@@ -47,6 +47,8 @@ export type Acidity = {
 
 export interface User {
   id: string;
+  name: string;
+  email: string;
   plants?: Plant[];
   lastLoggedIn: Date;
 }
@@ -54,6 +56,7 @@ export interface User {
 export interface Session {
   user: User;
   token: string;
+  ttl: Date;
 }
 
 export interface Errors {
