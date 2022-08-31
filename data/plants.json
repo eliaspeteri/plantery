@@ -2,7 +2,7 @@
   {
     "id": "dumb-cane",
     "name": "Dumb cane",
-    "scientificName": "Dieffenbachia",
+    "scientificName": "Dieffenbachia seguine",
     "createdAt": "2022-07-07",
     "cultivation": {
       "temperature": {
@@ -28,5 +28,47 @@
     "name": "Zanzibar gem",
     "scientificName": "Zamioculcas",
     "createdAt": "2022-07-07"
+  },
+  {
+    "id": "prayer-plant",
+    "name": "Prayer plant",
+    "scientificName": "Maranta leuconeura",
+    "createdAt": "2022-08-30",
+    "cultivation": {
+      "temperature": {
+        "min": 16,
+        "max": 27
+      },
+      "water": {
+        "timesPerMonth": 4
+      },
+      "fertilizer": {
+        "timesPerMonth": 4
+      }
+    }
+  },
+  {
+    "id": "peacock-plant",
+    "name": "Peacock plant",
+    "scientificName": "Goeppertia makoyana",
+    "createdAt": "2022-08-30"
+  },
+  {
+    "id": "adansons-monstera",
+    "name": "Adanson's monstera",
+    "scientificName": "Monstera adansonii",
+    "createdAt": "2022-08-30"
+  },
+  {
+    "id": "dracaena-marginata",
+    "name": "Dracaena marginata",
+    "scientificName": "Dracaena marginata",
+    "createdAt": "2022-08-30"
+  },
+  {
+    "id": "watermelon-dischidia",
+    "name": "Watermelon Dischidia",
+    "scientificName": "Dischidia Ovata",
+    "createdAt": "2022-08-30"
   }
 ]
