@@ -26,10 +26,22 @@ const PlantPage: NextPage = () => {
             <h2>
               {plant.name}, (<i>{plant.scientificName}</i>)
             </h2>
-            <p>{plant.createdAt?.toLocaleString()}</p>
+            <p>Created at {plant.createdAt?.toLocaleString()}</p>
+            {plant.cultivation && (
+              <p>
+                Keep temperature between {plant.cultivation?.temperature?.min}
+                &#176;C and {plant.cultivation?.temperature?.max}
+                &#176;C. Water {plant.cultivation?.water?.timesPerMonth} times
+                per month. Fertilize{' '}
+                {plant.cultivation?.fertilizer?.timesPerMonth} times per month.
+              </p>
+            )}
           </div>
         )}
       </div>
+      <Link href='/plants'>
+        <a> Back to plants</a>
+      </Link>
     </div>
   );
 };
