@@ -12,15 +12,18 @@ import { Errors } from '../types';
 import Head from 'next/head';
 
 import styles from '../styles/Form.module.css';
+import fieldStyles from '../styles/Field.module.css';
+
 import { NextPage } from 'next';
+import Button from '../components/Button';
 
 const NewPlant: NextPage = () => {
   return (
-    <div>
+    <div className='center'>
       <Head>
         <title>Plantery | Add a plant</title>
       </Head>
-      <h1>Add a new plant!</h1>
+      <h1 style={{ textAlign: 'center' }}>Add a new plant!</h1>
       <Formik
         initialValues={{
           name: '',
@@ -34,7 +37,8 @@ const NewPlant: NextPage = () => {
           waterTemp: 0,
           fertilizing: 0,
           minPh: 0,
-          maxPh: 14
+          maxPh: 14,
+          region: ''
         }}
         validate={(values) => {
           const errors: Errors = {};
@@ -71,16 +75,21 @@ const NewPlant: NextPage = () => {
             <div className={styles.row}>
               <div className={styles.rowItem}>
                 <label htmlFor='name'>Name *</label>
-                <Field type='text' name='name' />
+                <Field type='text' name='name' className={fieldStyles.input} />
                 <ErrorMessage
                   name='name'
                   component='div'
                   className={styles.errorMessage}
                 />
               </div>
+
               <div className={styles.rowItem}>
                 <label htmlFor='scientificName'>Scientific Name *</label>
-                <Field type='text' name='scientificName' />
+                <Field
+                  type='text'
+                  name='scientificName'
+                  className={fieldStyles.input}
+                />
                 <ErrorMessage
                   name='scientificName'
                   component='div'
@@ -88,10 +97,15 @@ const NewPlant: NextPage = () => {
                 />
               </div>
             </div>
+
             <div className={styles.row}>
               <div className={styles.rowItem}>
                 <label htmlFor='description'>Description</label>
-                <Field as='textarea' name='description' />
+                <Field
+                  as='textarea'
+                  name='description'
+                  className={[fieldStyles.input, fieldStyles.normal].join(' ')}
+                />
                 <ErrorMessage
                   name='description'
                   component='div'
@@ -99,136 +113,210 @@ const NewPlant: NextPage = () => {
                 />
               </div>
             </div>
-            <h2>Cultivation</h2>
+            <h2 style={{ textAlign: 'center' }}>Cultivation</h2>
+
             <div className={styles.row}>
-              Temperature:&nbsp;
-              <Field type='number' name='minTemp' placeholder='Minimum' />
-              <ErrorMessage
-                name='minTemp'
-                component='div'
-                className={styles.errorMessage}
-              />
-              &nbsp;-&nbsp;
-              <Field type='number' name='maxTemp' placeholder='Maximum' />
-              <ErrorMessage
-                name='maxTemp'
-                component='div'
-                className={styles.errorMessage}
-              />
-              <Field as='select' name='unit'>
-                <option value='C'>°C</option>
-                <option value='F'>°F</option>
-              </Field>
+              <div className={styles.rowItem}>
+                <label htmlFor='minTemp'>Minimum temperature</label>
+                <Field
+                  type='text'
+                  name='minTemp'
+                  placeholder='Minimum'
+                  className={[fieldStyles.input, fieldStyles.narrow].join(' ')}
+                />
+                <ErrorMessage
+                  name='minTemp'
+                  component='div'
+                  className={styles.errorMessage}
+                />
+              </div>
+
+              <div className={styles.rowItem}>
+                <label htmlFor='maxTemp'>Maximum temperature</label>
+                <Field
+                  type='text'
+                  name='maxTemp'
+                  placeholder='Maximum'
+                  className={[fieldStyles.input, fieldStyles.narrow].join(' ')}
+                />
+                <ErrorMessage
+                  name='maxTemp'
+                  component='div'
+                  className={styles.errorMessage}
+                />
+              </div>
+
+              <div className={styles.rowItem}>
+                <div></div>
+                <Field as='select' name='unit' className={fieldStyles.dropdown}>
+                  <option value='C'>°C</option>
+                  <option value='F'>°F</option>
+                </Field>
+              </div>
             </div>
+
             <div className={styles.row}>
-              Humidity:&nbsp;
-              <Field
-                type='number'
-                name='minHumidity'
-                placeholder='Minimum'
-                min={0}
-              />
-              <ErrorMessage
-                name='minHumidity'
-                component='div'
-                className={styles.errorMessage}
-              />
-              &nbsp;-&nbsp;
-              <Field
-                type='number'
-                name='maxHumidity'
-                placeholder='Maximum'
-                max={100}
-              />
-              &nbsp;%
-              <ErrorMessage
-                name='maxHumidity'
-                component='div'
-                className={styles.errorMessage}
-              />
+              <div className={styles.rowItem}>
+                <label htmlFor='minHumidity'>Minimum Humidity</label>
+                <Field
+                  type='text'
+                  name='minHumidity'
+                  placeholder='Minimum'
+                  className={[fieldStyles.input, fieldStyles.narrow].join(' ')}
+                />
+                <ErrorMessage
+                  name='minHumidity'
+                  component='div'
+                  className={styles.errorMessage}
+                />
+              </div>
+
+              <div className={styles.rowItem}>
+                <label htmlFor='maxHumidity'>Maximum humidity</label>
+                <Field
+                  type='text'
+                  name='maxHumidity'
+                  placeholder='Maximum'
+                  className={[fieldStyles.input, fieldStyles.narrow].join(' ')}
+                />
+                <ErrorMessage
+                  name='maxHumidity'
+                  component='div'
+                  className={styles.errorMessage}
+                />
+              </div>
             </div>
+
             <div className={styles.row}>
-              Light:&nbsp;
-              <Field as='select' name='light'>
-                <option value='shade'>Shade</option>
-                <option value='half-shade'>Half shade</option>
-                <option value='medium-sun'>Medium sun</option>
-                <option value='full-sun'>Full sun</option>
-              </Field>
-              <ErrorMessage
-                name='light'
-                component='div'
-                className={styles.errorMessage}
-              />
+              <div className={styles.rowItem}>
+                <label htmlFor='light'>Light</label>
+                <Field
+                  as='select'
+                  name='light'
+                  className={fieldStyles.dropdown}
+                >
+                  <option value='shade'>Shade</option>
+                  <option value='half-shade'>Half shade</option>
+                  <option value='medium-sun'>Medium sun</option>
+                  <option value='full-sun'>Full sun</option>
+                </Field>
+                <ErrorMessage
+                  name='light'
+                  component='div'
+                  className={styles.errorMessage}
+                />
+              </div>
             </div>
+
             <div className={styles.row}>
-              Watering:&nbsp;
-              <Field
-                type='number'
-                name='waterTimesPerMonth'
-                placeholder='times per month'
-              />
-              <ErrorMessage
-                name='timesPerMonth'
-                component='div'
-                className={styles.errorMessage}
-              />
-              <Field
-                type='number'
-                name='waterTemperature'
-                placeholder='Water temperature'
-              />
-              <Field as='select' name='unit'>
-                <option value='C'>°C</option>
-                <option value='F'>°F</option>
-              </Field>
+              <div className={styles.rowItem}>
+                <label htmlFor='waterTimesPerMonth'>Watering</label>
+                <Field
+                  type='text'
+                  name='waterTimesPerMonth'
+                  placeholder='times per month'
+                  className={[fieldStyles.input, fieldStyles.narrow].join(' ')}
+                />
+                <ErrorMessage
+                  name='timesPerMonth'
+                  component='div'
+                  className={styles.errorMessage}
+                />
+              </div>
+
+              <div className={styles.rowItem}>
+                <label htmlFor='waterTemperature'>Water temperature</label>
+                <Field
+                  type='text'
+                  name='waterTemperature'
+                  placeholder='Water temperature'
+                  className={[fieldStyles.input, fieldStyles.narrow].join(' ')}
+                />
+              </div>
+
+              <div className={styles.rowItem}>
+                <div></div>
+                <Field as='select' name='unit' className={fieldStyles.dropdown}>
+                  <option value='C'>°C</option>
+                  <option value='F'>°F</option>
+                </Field>
+              </div>
             </div>
+
             <div className={styles.row}>
-              Fertilizing:&nbsp;
-              <Field
-                type='number'
-                name='fertilizerTimesPerMonth'
-                placeholder='times per month'
-                min={0}
-              />
-              <ErrorMessage
-                name='fertilizerTimesPerMonth'
-                component='div'
-                className={styles.errorMessage}
-              />
+              <div className={styles.rowItem}>
+                <label htmlFor='fertilizerTimesPerMonth'>Fertilizer</label>
+                <Field
+                  type='text'
+                  name='fertilizerTimesPerMonth'
+                  placeholder='times per month'
+                  className={[fieldStyles.input, fieldStyles.narrow].join(' ')}
+                />
+                <ErrorMessage
+                  name='fertilizerTimesPerMonth'
+                  component='div'
+                  className={styles.errorMessage}
+                />
+              </div>
             </div>
+
             <div className={styles.row}>
-              Acidity:&nbsp;
-              <Field
-                type='number'
-                name='minAcidity'
-                placeholder='Minimum'
-                min={0}
-                max={13}
-              />
-              <ErrorMessage
-                name='minAcidity'
-                component='div'
-                className={styles.errorMessage}
-              />
-              &nbsp;-&nbsp;
-              <Field
-                type='number'
-                name='maxAcidity'
-                placeholder='Maximum'
-                min={1}
-                max={14}
-              />
-              <ErrorMessage
-                name='maxAcidity'
-                component='div'
-                className={styles.errorMessage}
-              />
-              &nbsp;pH
+              <div className={styles.rowItem}>
+                <label htmlFor='minAcidity'>Minimum acidity</label>
+                <Field
+                  type='text'
+                  name='minAcidity'
+                  placeholder='Minimum'
+                  className={[fieldStyles.input, fieldStyles.narrow].join(' ')}
+                />
+                <ErrorMessage
+                  name='minAcidity'
+                  component='div'
+                  className={styles.errorMessage}
+                />
+              </div>
+
+              <div className={styles.rowItem}>
+                <label htmlFor='maxAcidity'>Maximum acidity</label>
+                <Field
+                  type='text'
+                  name='maxAcidity'
+                  placeholder='Maximum'
+                  className={[fieldStyles.input, fieldStyles.narrow].join(' ')}
+                />
+                <ErrorMessage
+                  name='maxAcidity'
+                  component='div'
+                  className={styles.errorMessage}
+                />
+              </div>
+
+              <div className={styles.rowItem}>&nbsp;pH</div>
             </div>
-            <button type='submit' disabled={isSubmitting}>
-              Submit
-            </button>
+
+            <div className={styles.row}>
+              <div className={styles.rowItem}>
+                <label htmlFor='region'>Region</label>
+                <Field
+                  as='select'
+                  name='region'
+                  className={fieldStyles.dropdown}
+                >
+                  <option value='antarctica'>Antarctica</option>
+                  <option value='eurasia'>Eurasia</option>
+                  <option value='indonesia'>Indonesia</option>
+                  <option value='namerica'>North America</option>
+                  <option value='oceania'>Oceania</option>
+                  <option value='samerica'>South America</option>
+                </Field>
+              </div>
+            </div>
+
+            <div className={styles.row}>
+              <Button type='submit' disabled={isSubmitting}>
+                Submit
+              </Button>
+            </div>
           </Form>
         )}
       </Formik>

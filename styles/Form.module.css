@@ -1,13 +1,13 @@
 .row {
   display: flex;
   flex-direction: row;
-  width: 50vw;
 }
 
 .rowItem {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  margin: 1vh 2vw;
 }
 
 .errorMessage {
