@@ -5,7 +5,7 @@
   max-height: 40vh;
   min-width: 20vw;
   max-width: 44vw;
-  background-color: gainsboro;
+  background-color: #e1e2ef;
   border: none;
   border-radius: 8px;
 }
@@ -24,7 +24,7 @@
   height: 4vh;
   border: none;
   border-radius: 8px;
-  background-color: gainsboro;
+  background-color: #e1e2ef;
 }
 
 .dropdown:hover {

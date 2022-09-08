@@ -23,7 +23,7 @@ const Button = ({
       onClick={onClick}
       type={type}
       disabled={disabled}
-      className={styles ? styles.button : className}
+      className={className ? className : styles.button}
       style={style}
     >
       {children}

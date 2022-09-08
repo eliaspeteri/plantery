@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  margin: 1vh 10vw;
+  border: 1px solid lightgray;
+  border-radius: 6px;
+}
+
+.content {
+  flex-direction: column;
+  margin: auto 1vw;
+  border-radius: 6px;
+}
+
+.title {
+  margin: auto 1vw;
+}
+
+.message {
+  margin: auto 1vw;
+}
