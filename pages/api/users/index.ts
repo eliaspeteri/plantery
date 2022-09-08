@@ -1,13 +1,12 @@
 import mongoose from 'mongoose';
 import { NextApiRequest, NextApiResponse } from 'next';
-import PlantModel from '../../../models/plant';
+import UserModel from '../../../models/user';
 import config from '../../../utils/config';
 import logger from '../../../utils/logger';
 
-export async function getPlants() {
+export async function getUsers() {
   mongoose.connect(config.MONGODB_URI);
-  const plants = await PlantModel.find({}).lean();
-  return plants;
+  return await UserModel.find({}, { password: false }).lean();
 }
 
 export default async function handler(
@@ -16,8 +15,9 @@ export default async function handler(
 ) {
   if (req.method === 'GET') {
     try {
-      const data = await getPlants();
-      res.status(200).json(data);
+      const result = await getUsers();
+
+      res.json(result);
     } catch (error) {
       logger.error((error as any).message);
       res.json({ error: (error as any).message });

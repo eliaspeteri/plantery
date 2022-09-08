@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import PostModel from '../../../models/post';
 import { Post, NewPost } from '../../../types';
+import logger from '../../../utils/logger';
 
 export async function getPosts(): Promise<Post[]> {
   const posts = await PostModel.find({});
@@ -21,26 +22,32 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method === 'GET') {
-    try {
-      const data: Post[] = await getPosts();
-      res.status(200).json(data);
-    } catch (error) {
-      res.status(500).json({ error: (error as any).message });
+  switch (req.method) {
+    case 'GET': {
+      try {
+        const data: Post[] = await getPosts();
+        res.status(200).json(data);
+      } catch (error) {
+        res.status(500).json({ error: (error as any).message });
+      }
+      break;
     }
-  } else if (req.method === 'POST') {
-    try {
-      const { createdBy, postTitle, message, category } = req.body;
-      const data = await newPost({
-        createdAt: new Date(),
-        createdBy: createdBy,
-        postTitle: postTitle,
-        message: message,
-        category: category
-      });
-      res.status(200).json(data);
-    } catch (error) {
-      res.status(500).json({ error: (error as any).message });
+    case 'POST': {
+      try {
+        const { createdBy, postTitle, message, category } = req.body;
+        const data = await newPost({
+          createdAt: new Date(),
+          createdBy: createdBy,
+          postTitle: postTitle,
+          message: message,
+          category: category
+        });
+        res.status(200).json(data);
+      } catch (error) {
+        logger.error((error as any).message);
+        res.json({ error: (error as any).message });
+      }
+      break;
     }
   }
 }

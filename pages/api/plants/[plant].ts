@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import PlantModel from '../../../models/plant';
 import { Plant } from '../../../types';
+import logger from '../../../utils/logger';
 
 export async function getPlant(id: string): Promise<Plant | null> {
   const plant: Plant | null = await PlantModel.findById(id);
@@ -17,6 +18,7 @@ export default async function handler(
     const data = await getPlant(plant as string);
     res.status(200).json({ data: data });
   } catch (error) {
-    res.status(500).json({ error: (error as any).message });
+    logger.error((error as any).message);
+    res.json({ error: (error as any).message });
   }
 }
