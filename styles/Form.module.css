@@ -13,3 +13,7 @@
 .errorMessage {
   color: red;
 }
+
+.textRow {
+  display: inline;
+}

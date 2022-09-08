@@ -1,4 +1,4 @@
-import { Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import Head from 'next/head';
 import React from 'react';
 import { Errors } from '../types';
@@ -16,11 +16,21 @@ const RegisterPage = () => {
       </Head>
       <h1>Register</h1>
       <Formik
-        initialValues={{ name: '', email: '', password: '' }}
+        initialValues={{
+          firstName: '',
+          lastName: '',
+          email: '',
+          password: '',
+          passwordConfirmation: '',
+          isEmailVerified: false
+        }}
         validate={(values) => {
           const errors: Errors = {};
-          if (!values.name) {
-            errors.name = 'Required';
+          if (!values.firstName) {
+            errors.firstName = 'Required';
+          }
+          if (!values.lastName) {
+            errors.lastName = 'Required';
           }
           if (!values.email) {
             errors.email = 'Required';
@@ -28,17 +38,28 @@ const RegisterPage = () => {
           if (!values.password) {
             errors.password = 'Required';
           }
+          if (values.password !== values.passwordConfirmation) {
+            errors.passwordConfirmation = 'Passwords Do Not Match';
+          }
           return errors;
         }}
         onSubmit={async (values, { setSubmitting }) => {
-          const result = await fetch(`${process.env.ROOT}/api/auth/register`);
+          const result = await fetch(`${process.env.ROOT}/api/register`);
           console.table(result);
         }}
       >
         {({ isSubmitting }) => (
           <Form>
             <div className={styles.rowItem}>
-              <label htmlFor='email'>Email *</label>
+              <label htmlFor='email'>
+                Email <span style={{ color: 'red' }}>*</span>
+                &nbsp;
+                <ErrorMessage
+                  name='email'
+                  component='span'
+                  className={styles.errorMessage}
+                />
+              </label>
               <Field
                 name='email'
                 type='email'
@@ -49,7 +70,15 @@ const RegisterPage = () => {
 
             <div className={styles.row}>
               <div className={styles.rowItem}>
-                <label htmlFor='firstName'>First name *</label>
+                <label htmlFor='firstName'>
+                  First name <span style={{ color: 'red' }}>*</span>
+                  &nbsp;
+                  <ErrorMessage
+                    name='firstName'
+                    component='span'
+                    className={styles.errorMessage}
+                  />
+                </label>
                 <Field
                   name='firstName'
                   required
@@ -58,14 +87,29 @@ const RegisterPage = () => {
               </div>
 
               <div className={styles.rowItem}>
-                <label htmlFor='lastName'>Last name *</label>
+                <label htmlFor='lastName'>
+                  Last name * &nbsp;
+                  <ErrorMessage
+                    name='lastName'
+                    component='span'
+                    className={styles.errorMessage}
+                  />
+                </label>
                 <Field name='lastName' required className={fieldStyles.input} />
               </div>
             </div>
 
             <div className={styles.row}>
               <div className={styles.rowItem}>
-                <label htmlFor='password'>Password *</label>
+                <label htmlFor='password'>
+                  Password<span style={{ color: 'red' }}>*</span>
+                  &nbsp;
+                  <ErrorMessage
+                    name='password'
+                    component='span'
+                    className={styles.errorMessage}
+                  />
+                </label>
                 <Field
                   name='password'
                   type='password'
@@ -75,7 +119,15 @@ const RegisterPage = () => {
               </div>
 
               <div className={styles.rowItem}>
-                <label htmlFor='passwordConfirmation'>Confirm password *</label>
+                <label htmlFor='passwordConfirmation'>
+                  Confirm password <span style={{ color: 'red' }}>*</span>
+                  &nbsp;
+                  <ErrorMessage
+                    name='passwordConfirmation'
+                    component='span'
+                    className={styles.errorMessage}
+                  />
+                </label>
                 <Field
                   name='passwordConfirmation'
                   type='password'
@@ -86,7 +138,7 @@ const RegisterPage = () => {
             </div>
             <div className={styles.row}>
               <Button type='submit' disabled={isSubmitting}>
-                Submit
+                Register
               </Button>
             </div>
             <Link href='/login' className={styles.row}>

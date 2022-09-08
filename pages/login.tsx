@@ -52,31 +52,35 @@ const LoginPage: NextPage = () => {
             <Form>
               <div className={styles.row}>
                 <div className={styles.rowItem}>
-                  <label htmlFor='email'>Email *</label>
+                  <label htmlFor='email'>
+                    Email <span style={{ color: 'red' }}>*</span>&nbsp;
+                    <ErrorMessage
+                      name='email'
+                      component='span'
+                      className={styles.errorMessage}
+                    />
+                  </label>
                   <Field
                     name='email'
                     type='email'
                     className={fieldStyles.input}
                   />
-                  <ErrorMessage
-                    name='email'
-                    component='div'
-                    className={styles.errorMessage}
-                  />
                 </div>
               </div>
               <div className={styles.row}>
                 <div className={styles.rowItem}>
-                  <label htmlFor='password'>Password *</label>
+                  <label htmlFor='password'>
+                    Password <span style={{ color: 'red' }}>*</span>&nbsp;
+                    <ErrorMessage
+                      name='password'
+                      component='span'
+                      className={styles.errorMessage}
+                    />
+                  </label>
                   <Field
                     name='password'
                     type='password'
                     className={fieldStyles.input}
-                  />
-                  <ErrorMessage
-                    name='password'
-                    component='div'
-                    className={styles.errorMessage}
                   />
                 </div>
               </div>
