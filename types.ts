@@ -1,15 +1,49 @@
-export interface Plant {
-  id: string;
+export interface Plant extends Meta {
+  id?: string;
   name: string;
   scientificName: string;
   description?: string;
   cultivation?: Cultivation;
-  createdAt: string | Date;
-  createdBy?: string;
-  updatedAt?: string | Date;
-  updatedBy?: string;
   ecology?: string;
   taxonomy?: string;
+}
+
+export interface Post extends Meta {
+  id: string;
+  postTitle: string;
+  message: string;
+  category?: Category;
+  comments?: Comment[];
+}
+
+export interface Comment extends Meta {
+  id: string;
+  message: string;
+}
+
+export interface Meta {
+  createdAt: Date;
+  createdBy: User;
+  updatedAt?: Date;
+  updatedBy?: string;
+  removedAt?: Date;
+  removedBy?: string;
+}
+
+export type NewPost = Omit<Post, 'id' | 'updatedAt' | 'updatedBy'>;
+
+export interface Category {
+  id: string;
+  title: string;
+  description: string;
+  posts?: Post[];
+}
+
+export interface UserPlant extends Plant {
+  id: string;
+  lastWatered?: Date;
+  lastFertilized?: Date;
+  lastSoilChanged?: Date;
 }
 
 export interface Cultivation {
@@ -46,14 +80,15 @@ export type Acidity = {
 };
 
 export interface User {
-  id: string;
+  id?: string;
   name: string;
-  email: string;
-  plants?: Plant[];
+  email?: string;
+  plants?: UserPlant[];
   lastLoggedIn: Date;
 }
 
 export interface Session {
+  id: string;
   user: User;
   token: string;
   ttl: Date;
