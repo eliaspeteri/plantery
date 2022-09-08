@@ -24,3 +24,8 @@
   position: absolute;
   right: 0;
 }
+
+.logout {
+  position: absolute;
+  right: 4vw;
+}
