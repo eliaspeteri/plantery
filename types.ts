@@ -85,7 +85,11 @@ export interface User {
   email?: string;
   plants?: UserPlant[];
   lastLoggedIn: Date;
+  role: string;
+  isEmailVerified: boolean;
 }
+
+export type NewUser = Omit<User, 'lastLoggedIn'>;
 
 export interface Session {
   id: string;
