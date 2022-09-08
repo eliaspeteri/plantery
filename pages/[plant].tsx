@@ -1,20 +1,16 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import data from '../data/plants.json';
+import React from 'react';
 import { Plant } from '../types';
+import { getPlant } from './api/plants/[plant]';
+import PlantModel from '../models/plant';
 
-const PlantPage: NextPage = () => {
-  const [plant, setPlant] = useState<Plant>();
-  const router = useRouter();
+interface Props {
+  plant?: Plant;
+}
 
-  useEffect(() => {
-    const plantName = router.query.plant as string;
-    const plant = data.find((item) => item.id === plantName);
-    setPlant(plant);
-  }, [router.query.plant]);
+const PlantPage: NextPage = ({ plant }: Props) => {
   return (
     <div>
       <Head>
@@ -47,3 +43,18 @@ const PlantPage: NextPage = () => {
 };
 
 export default PlantPage;
+
+export async function getStaticPaths() {
+  const plants = await PlantModel.find({});
+
+  const paths = plants.map((plant) => ({
+    params: { id: plant.id }
+  }));
+
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }) {
+  const data = await getPlant(params.id);
+  return { props: { plant: data } };
+}

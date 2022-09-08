@@ -1,19 +1,7 @@
-import { model, Schema, Document } from 'mongoose';
-import { Cultivation, Plant } from '../types';
+import mongoose, { model, Schema } from 'mongoose';
+import { Plant } from '../types';
 
-export interface IPlant extends Document {
-  id: string;
-  name: string;
-  scientificName: string;
-  description?: string;
-  cultivation?: Cultivation;
-  createdAt: string | Date;
-  createdBy?: string;
-  updatedAt?: string | Date;
-  updatedBy?: string;
-  ecology?: string;
-  taxonomy?: string;
-}
+export interface IPlant extends Document {}
 
 const plantSchema: Schema = new Schema<Plant>({
   name: {
@@ -106,4 +94,4 @@ plantSchema.set('toJSON', {
   }
 });
 
-export default model<IPlant>('Plant', plantSchema);
+export default mongoose.models.Plant || model<IPlant>('Plant', plantSchema);
