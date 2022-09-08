@@ -36,16 +36,16 @@ const PlantForm = ({ onSubmit }: Props) => {
         if (!values.scientificName) {
           errors.scientificName = 'Required';
         }
-        if (values.minPh < 0 || values.minPh > 14) {
+        if (parseInt(values.minPh) < 0 || parseInt(values.minPh) > 14) {
           errors.minPh = 'Must be between 0 and 14';
         }
-        if (values.maxPh < 0 || values.maxPh > 14) {
+        if (parseInt(values.maxPh) < 0 || parseInt(values.maxPh) > 14) {
           errors.maxPh = 'Must be between 0 and 14';
         }
-        if (values.minPh > values.maxPh) {
+        if (parseInt(values.minPh) > parseInt(values.maxPh)) {
           errors.minPh = 'Must be less than maxPh';
         }
-        if (values.maxPh < values.minPh) {
+        if (parseInt(values.maxPh) < parseInt(values.minPh)) {
           errors.maxPh = 'Must be greater than minPh';
         }
 
