@@ -8,7 +8,7 @@ import Head from 'next/head';
 import { getPlants } from './api/plants';
 
 interface Props {
-  plants: Plant[];
+  plants: Record<string, any>;
 }
 
 const PlantsPage: NextPage<Props> = ({ plants }: Props) => {
@@ -47,7 +47,7 @@ export async function getServerSideProps({ _req, res }) {
     'public, s-maxage=10, stale-while-revalidate=59'
   );
 
-  const data: Plant[] = await getPlants();
+  const data = await getPlants();
 
   return {
     props: {
