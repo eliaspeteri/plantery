@@ -1,9 +1,12 @@
+import mongoose from 'mongoose';
 import { NextApiRequest, NextApiResponse } from 'next';
 import PlantModel from '../../../models/plant';
 import { Plant } from '../../../types';
+import config from '../../../utils/config';
 import logger from '../../../utils/logger';
 
 export async function getPlant(id: string): Promise<Plant | null> {
+  mongoose.connect(config.MONGODB_URI);
   const plant: Plant | null = await PlantModel.findById(id);
 
   return plant;

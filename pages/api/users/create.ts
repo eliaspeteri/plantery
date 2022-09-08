@@ -1,9 +1,12 @@
+import mongoose from 'mongoose';
 import { NextApiRequest, NextApiResponse } from 'next';
 import UserModel from '../../../models/user';
 import { NewUser } from '../../../types';
+import config from '../../../utils/config';
 import logger from '../../../utils/logger';
 
 export async function createUser(userObj: NewUser) {
+  mongoose.connect(config.MONGODB_URI);
   const doc = new UserModel(userObj);
   return await doc.save();
 }

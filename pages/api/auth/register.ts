@@ -1,5 +1,7 @@
+import mongoose from 'mongoose';
 import { NextApiRequest, NextApiResponse } from 'next';
 import UserModel from '../../../models/user';
+import config from '../../../utils/config';
 import logger from '../../../utils/logger';
 import PasswordServ from '../../../utils/password';
 
@@ -10,6 +12,7 @@ export async function register(newUser: {
   newUser.password = await PasswordServ.hash(newUser.password);
   delete newUser.isEmailVerified;
   let user = new UserModel(newUser);
+  mongoose.connect(config.MONGODB_URI);
   user = await user.save();
 }
 

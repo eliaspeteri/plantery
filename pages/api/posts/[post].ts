@@ -1,14 +1,13 @@
 import mongoose from 'mongoose';
 import { NextApiRequest, NextApiResponse } from 'next';
 import PostModel from '../../../models/post';
-import { Post } from '../../../types';
 import config from '../../../utils/config';
 import logger from '../../../utils/logger';
 
-export async function getPosts(): Promise<Post[]> {
+export async function getPost(id: string | string[] | undefined) {
   mongoose.connect(config.MONGODB_URI);
-  const posts = await PostModel.find({});
-  return posts;
+  const post = await PostModel.find({ id: id });
+  return post;
 }
 
 export default async function handler(
@@ -17,11 +16,10 @@ export default async function handler(
 ) {
   if (req.method === 'GET') {
     try {
-      const data: Post[] = await getPosts();
+      const data = await getPost(req.query.id);
       res.json(data);
     } catch (error) {
       logger.error((error as any).message);
-      res.json({ error: (error as any).message });
     }
   }
 }
