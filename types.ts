@@ -23,7 +23,7 @@ export interface Comment extends Meta {
 
 export interface Meta {
   createdAt: Date;
-  createdBy: User;
+  createdBy?: User;
   updatedAt?: Date;
   updatedBy?: string;
   removedAt?: Date;
