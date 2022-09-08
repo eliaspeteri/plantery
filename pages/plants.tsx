@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import React from 'react';
 import { Plant } from '../types';
-import data from '../data/plants.json';
 
 import styles from '../styles/Plant.module.css';
 import { NextPage } from 'next';
 import Head from 'next/head';
+import { getPlants } from './api/plants';
 
 interface Props {
   plants: Plant[];
@@ -41,11 +41,17 @@ const PlantsPage: NextPage<Props> = ({ plants }: Props) => {
 
 export default PlantsPage;
 
-export async function getStaticProps() {
+export async function getServerSideProps({ _req, res }) {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  );
+
+  const data: Plant[] = await getPlants();
+
   return {
     props: {
       plants: data
-    },
-    revalidate: 60
+    }
   };
 }
