@@ -6,7 +6,8 @@ import {
   Form,
   Field,
   FieldProps,
-  ErrorMessage
+  ErrorMessage,
+  FormikValues
 } from 'formik';
 import { Errors } from '../types';
 import Head from 'next/head';
@@ -63,7 +64,7 @@ const NewPlant: NextPage = () => {
 
           return errors;
         }}
-        onSubmit={(values, { setSubmitting }) => {
+        onSubmit={(values: FormikValues, { setSubmitting }) => {
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
             setSubmitting(false);
