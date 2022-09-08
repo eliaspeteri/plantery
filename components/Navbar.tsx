@@ -15,6 +15,9 @@ const Navbar = () => {
       <Link href='/plants'>
         <a className={styles.item}>Plants</a>
       </Link>
+      <Link href='/forum'>
+        <a className={styles.item}>Forum</a>
+      </Link>
       <SessionContext.Consumer>
         {({ user }) =>
           user.name !== '' ? (
@@ -26,10 +29,12 @@ const Navbar = () => {
                 <a className={styles.item}>My plants</a>
               </Link>
               {/* Displays user initials if user is logged in. Else a login link is displayed.*/}
-              {(
-                (([...user.name.matchAll(rgx)] || []).shift()?.[1] || '') +
-                (([...user.name.matchAll(rgx)] || []).pop()?.[1] || '')
-              ).toUpperCase()}
+              <div className={[styles.item, styles.login].join(' ')}>
+                {(
+                  (([...user.name.matchAll(rgx)] || []).shift()?.[1] || '') +
+                  (([...user.name.matchAll(rgx)] || []).pop()?.[1] || '')
+                ).toUpperCase()}
+              </div>
             </>
           ) : (
             <>
