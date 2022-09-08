@@ -26,6 +26,18 @@ const ForumPage = ({ categories }: Props) => {
         >
           New post
         </Button>
+        <span>
+          {categories.map((category) => (
+            <Link
+              href={`/forum/categories/${encodeURIComponent(
+                category.title
+              ).toLocaleLowerCase()}`}
+              key={category.id}
+            >
+              {category.title}
+            </Link>
+          ))}
+        </span>
         {categories.map((category) => (
           <section
             key={category.id}
@@ -63,7 +75,7 @@ export async function getServerSideProps({
   _req,
   res
 }): Promise<{ props: { categories: Category[] } }> {
-  // const data: Post[] = await getPosts();
+  const data: Post[] = await getPosts();
   const categories: Category[] = [
     {
       id: 'houseplants',
@@ -74,11 +86,13 @@ export async function getServerSideProps({
           id: 'post-1',
           postTitle: 'New Post!',
           message: 'This is a new post!',
-          createdAt: new Date().toDateString(),
+          createdAt: new Date().toLocaleDateString(),
           createdBy: {
             id: 'default-user',
             name: 'Default User',
-            lastLoggedIn: new Date().toDateString()
+            lastLoggedIn: new Date().toLocaleDateString(),
+            role: 'USER',
+            isEmailVerified: true
           }
         }
       ]
