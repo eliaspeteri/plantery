@@ -1,10 +1,6 @@
-import React, { createContext } from 'react';
-import { Session } from '../types';
+import { createContext } from 'react';
+import { getSessionCookie } from '../utils/sessions';
 
-const SessionContext = createContext<Session>({
-  user: { id: '', name: '', email: '', plants: [], lastLoggedIn: new Date() },
-  ttl: new Date(),
-  token: ''
-});
+const SessionContext = createContext(getSessionCookie());
 
 export default SessionContext;

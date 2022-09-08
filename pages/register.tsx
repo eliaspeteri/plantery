@@ -4,11 +4,13 @@ import React from 'react';
 import { Errors } from '../types';
 
 import styles from '../styles/Form.module.css';
+import fieldStyles from '../styles/Field.module.css';
 import Link from 'next/link';
+import Button from '../components/Button';
 
 const RegisterPage = () => {
   return (
-    <div>
+    <div className='center'>
       <Head>
         <title>Plantery | Register</title>
       </Head>
@@ -28,49 +30,64 @@ const RegisterPage = () => {
           }
           return errors;
         }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
+        onSubmit={async (values, { setSubmitting }) => {
+          const result = await fetch(`${process.env.ROOT}/api/auth/register`);
+          console.table(result);
         }}
       >
         {({ isSubmitting }) => (
           <Form>
-            <div className={styles.row}>
-              <div className={styles.rowItem}>
-                <label htmlFor='email'>Email *</label>
-                <Field name='email' type='email' required />
-              </div>
+            <div className={styles.rowItem}>
+              <label htmlFor='email'>Email *</label>
+              <Field
+                name='email'
+                type='email'
+                required
+                className={fieldStyles.input}
+              />
             </div>
 
             <div className={styles.row}>
               <div className={styles.rowItem}>
                 <label htmlFor='firstName'>First name *</label>
-                <Field name='firstName' required />
+                <Field
+                  name='firstName'
+                  required
+                  className={fieldStyles.input}
+                />
               </div>
 
               <div className={styles.rowItem}>
                 <label htmlFor='lastName'>Last name *</label>
-                <Field name='lastName' required />
+                <Field name='lastName' required className={fieldStyles.input} />
               </div>
             </div>
 
             <div className={styles.row}>
               <div className={styles.rowItem}>
                 <label htmlFor='password'>Password *</label>
-                <Field name='password' type='password' required />
+                <Field
+                  name='password'
+                  type='password'
+                  required
+                  className={fieldStyles.input}
+                />
               </div>
 
               <div className={styles.rowItem}>
                 <label htmlFor='passwordConfirmation'>Confirm password *</label>
-                <Field name='passwordConfirmation' type='password' required />
+                <Field
+                  name='passwordConfirmation'
+                  type='password'
+                  required
+                  className={fieldStyles.input}
+                />
               </div>
             </div>
             <div className={styles.row}>
-              <button type='submit' disabled={isSubmitting}>
+              <Button type='submit' disabled={isSubmitting}>
                 Submit
-              </button>
+              </Button>
             </div>
             <Link href='/login' className={styles.row}>
               <a className={styles.rowItem}>Login with an existing account</a>
