@@ -1,24 +1,23 @@
 import mongoose from 'mongoose';
 import { NextApiRequest, NextApiResponse } from 'next';
-import UserModel from '../../../models/user';
-import { NewUser } from '../../../types';
+import CategoryModel from '../../../models/category';
+import { Category } from '../../../types';
 import config from '../../../utils/config';
 import logger from '../../../utils/logger';
 
-export async function createUser(userObj: NewUser) {
+export async function getCategory(title: string | string[] | undefined) {
   mongoose.connect(config.MONGODB_URI);
-  const user = new UserModel(userObj);
-  return await user.save();
+  return await CategoryModel.findOne({ title: title });
 }
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method === 'POST') {
+  if (req.method === 'GET') {
     try {
-      const result = await createUser(req.body);
-      res.json(result);
+      const data = await getCategory(req.query.title);
+      res.json(data as Category);
     } catch (error) {
       logger.error((error as any).message);
       res.json({ error: (error as any).message });

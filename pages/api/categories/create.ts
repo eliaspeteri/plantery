@@ -1,14 +1,14 @@
 import mongoose from 'mongoose';
 import { NextApiRequest, NextApiResponse } from 'next';
-import UserModel from '../../../models/user';
-import { NewUser } from '../../../types';
+import CategoryModel from '../../../models/category';
+import { NewCategory } from '../../../types';
 import config from '../../../utils/config';
 import logger from '../../../utils/logger';
 
-export async function createUser(userObj: NewUser) {
+export async function createCategory(categoryObject: NewCategory) {
   mongoose.connect(config.MONGODB_URI);
-  const user = new UserModel(userObj);
-  return await user.save();
+  const category = new CategoryModel(categoryObject);
+  await category.save();
 }
 
 export default async function handler(
@@ -17,8 +17,12 @@ export default async function handler(
 ) {
   if (req.method === 'POST') {
     try {
-      const result = await createUser(req.body);
-      res.json(result);
+      const { title, description } = req.body;
+      const data = await createCategory({
+        title: title,
+        description: description
+      });
+      res.json(data);
     } catch (error) {
       logger.error((error as any).message);
       res.json({ error: (error as any).message });

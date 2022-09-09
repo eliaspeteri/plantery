@@ -1,14 +1,14 @@
 import mongoose from 'mongoose';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { NewPost } from '../../../types';
+import PlantModel from '../../../models/plant';
+import { Plant } from '../../../types';
 import config from '../../../utils/config';
 import logger from '../../../utils/logger';
-import PostModel from '../../../models/post';
 
-export async function createPost(postObject: NewPost) {
+export async function createPlant(plantObject: Plant) {
   mongoose.connect(config.MONGODB_URI);
-  const post = new PostModel(postObject);
-  await post.save();
+  const plant = new PlantModel(plantObject);
+  await plant.save();
 }
 
 export default async function handler(
@@ -17,13 +17,13 @@ export default async function handler(
 ) {
   if (req.method === 'POST') {
     try {
-      const { createdBy, postTitle, message, category } = req.body;
-      const data = await createPost({
-        createdAt: new Date(),
-        createdBy: createdBy,
-        postTitle: postTitle,
-        message: message,
-        category: category
+      const { name, latin, description, cultivation } = req.body;
+      const data = await createPlant({
+        name: name,
+        latin: latin,
+        description: description,
+        cultivation: cultivation,
+        createdAt: new Date()
       });
       res.json(data);
     } catch (error) {

@@ -17,7 +17,7 @@ export default async function handler(
   if (req.method === 'GET') {
     try {
       const data = await getPlants();
-      res.status(200).json(data);
+      res.json(data);
     } catch (error) {
       logger.error((error as any).message);
       res.json({ error: (error as any).message });
