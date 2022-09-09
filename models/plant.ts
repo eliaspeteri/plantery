@@ -6,7 +6,8 @@ export interface IPlant extends Document {}
 const plantSchema: Schema = new Schema<Plant>({
   name: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   scientificName: {
     type: String,

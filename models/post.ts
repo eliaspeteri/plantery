@@ -60,4 +60,4 @@ postSchema.set('toJSON', {
   }
 });
 
-export default mongoose.models.User || model<IPost>('User', postSchema);
+export default mongoose.models.Post || model<IPost>('Post', postSchema);

@@ -1,7 +1,7 @@
 import mongoose, { model, Schema, Types } from 'mongoose';
-import { Category } from '../types';
+import { NewCategory } from '../types';
 
-export interface ICategory extends Document, Category {
+export interface ICategory extends Document, NewCategory {
   posts: Types.ObjectId[];
 }
 
@@ -9,7 +9,8 @@ const categorySchema: Schema = new Schema<ICategory>({
   title: {
     type: String,
     required: true,
-    minlength: 3
+    minlength: 3,
+    unique: true
   },
   description: {
     type: String,
@@ -30,4 +31,5 @@ categorySchema.set('toJSON', {
   }
 });
 
-export default mongoose.models.User || model<ICategory>('User', categorySchema);
+export default mongoose.models.Category ||
+  model<ICategory>('Category', categorySchema);

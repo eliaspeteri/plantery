@@ -1,5 +1,4 @@
 import mongoose, { model, Schema, Types } from 'mongoose';
-import { Session } from '../types';
 
 export interface ISession extends Document {
   user: Types.ObjectId;
@@ -31,4 +30,5 @@ sessionSchema.set('toJSON', {
   }
 });
 
-export default mongoose.models.User || model<ISession>('User', sessionSchema);
+export default mongoose.models.Session ||
+  model<ISession>('Session', sessionSchema);

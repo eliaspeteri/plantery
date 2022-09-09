@@ -12,7 +12,8 @@ const userSchema: Schema = new Schema<User>({
   email: {
     type: String,
     required: true,
-    minlength: 6
+    minlength: 6,
+    unique: true
   },
   plants: {
     type: Array,
