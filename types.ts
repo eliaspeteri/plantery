@@ -1,11 +1,15 @@
 export interface Plant extends Meta {
   id?: string;
   name: string;
-  scientificName: string;
+  latin: string;
   description?: string;
   cultivation?: Cultivation;
-  ecology?: string;
-  taxonomy?: string;
+}
+
+export interface PlantCategory {
+  title: string;
+  description: string;
+  latin: string;
 }
 
 export interface Post extends Meta {
@@ -38,6 +42,8 @@ export interface Category {
   description: string;
   posts?: Post[];
 }
+
+export type NewCategory = Omit<Category, 'id' | 'posts'>;
 
 export interface UserPlant extends Plant {
   id: string;
