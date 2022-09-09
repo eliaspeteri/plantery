@@ -8,6 +8,7 @@ import Button from '../../components/Button';
 import { Category, Errors } from '../../types';
 import { useRouter } from 'next/router';
 import { HiArrowLeft } from 'react-icons/hi';
+import { getCategories } from '../api/categories';
 
 interface Props {
   categories: Category[];
@@ -117,18 +118,7 @@ const ForumCreatePage = ({ categories }: Props) => {
 export default ForumCreatePage;
 
 export async function getServerSideProps() {
-  const categories: Category[] = [
-    {
-      id: 'houseplants',
-      title: 'Houseplants',
-      description: 'Houseplants of all kind!'
-    },
-    {
-      id: 'palms',
-      title: 'Palm trees',
-      description: 'Palm trees from all over the world'
-    }
-  ];
+  const categories = await getCategories();
   return {
     props: {
       categories
