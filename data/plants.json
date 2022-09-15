@@ -2,7 +2,7 @@
   {
     "id": "dumb-cane",
     "name": "Dumb cane",
-    "scientificName": "Dieffenbachia seguine",
+    "latin": "Dieffenbachia seguine",
     "createdAt": "2022-07-07",
     "cultivation": {
       "temperature": {
@@ -20,19 +20,19 @@
   {
     "id": "yucca-palm",
     "name": "Yucca palm",
-    "scientificName": "Yucca brevifolia",
+    "latin": "Yucca brevifolia",
     "createdAt": "2022-07-07"
   },
   {
     "id": "zanzibar-gem",
     "name": "Zanzibar gem",
-    "scientificName": "Zamioculcas",
+    "latin": "Zamioculcas",
     "createdAt": "2022-07-07"
   },
   {
     "id": "prayer-plant",
     "name": "Prayer plant",
-    "scientificName": "Maranta leuconeura",
+    "latin": "Maranta leuconeura",
     "createdAt": "2022-08-30",
     "cultivation": {
       "temperature": {
@@ -50,25 +50,25 @@
   {
     "id": "peacock-plant",
     "name": "Peacock plant",
-    "scientificName": "Goeppertia makoyana",
+    "latin": "Goeppertia makoyana",
     "createdAt": "2022-08-30"
   },
   {
     "id": "adansons-monstera",
     "name": "Adanson's monstera",
-    "scientificName": "Monstera adansonii",
+    "latin": "Monstera adansonii",
     "createdAt": "2022-08-30"
   },
   {
     "id": "dracaena-marginata",
     "name": "Dracaena marginata",
-    "scientificName": "Dracaena marginata",
+    "latin": "Dracaena marginata",
     "createdAt": "2022-08-30"
   },
   {
     "id": "watermelon-dischidia",
     "name": "Watermelon Dischidia",
-    "scientificName": "Dischidia Ovata",
+    "latin": "Dischidia Ovata",
     "createdAt": "2022-08-30"
   }
 ]
