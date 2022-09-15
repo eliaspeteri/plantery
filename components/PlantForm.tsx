@@ -15,7 +15,7 @@ const PlantForm = ({ onSubmit }: Props) => {
     <Formik
       initialValues={{
         name: '',
-        scientificName: '',
+        latin: '',
         minTemp: '',
         maxTemp: '',
         minHumid: '',
@@ -33,8 +33,8 @@ const PlantForm = ({ onSubmit }: Props) => {
         if (!values.name) {
           errors.name = 'Required';
         }
-        if (!values.scientificName) {
-          errors.scientificName = 'Required';
+        if (!values.latin) {
+          errors.latin = 'Required';
         }
         if (parseInt(values.minPh) < 0 || parseInt(values.minPh) > 14) {
           errors.minPh = 'Must be between 0 and 14';
@@ -69,14 +69,10 @@ const PlantForm = ({ onSubmit }: Props) => {
             </div>
 
             <div className={styles.rowItem}>
-              <label htmlFor='scientificName'>Scientific Name *</label>
-              <Field
-                type='text'
-                name='scientificName'
-                className={fieldStyles.input}
-              />
+              <label htmlFor='latin'>Scientific Name *</label>
+              <Field type='text' name='latin' className={fieldStyles.input} />
               <ErrorMessage
-                name='scientificName'
+                name='latin'
                 component='div'
                 className={styles.errorMessage}
               />

@@ -15,7 +15,7 @@ const SearchResult = ({ result }: Props) => {
         as={`/${result.name?.toLocaleLowerCase().replace(' ', '-')}`}
       >
         <a>
-          {result.name} (<i>{result.scientificName}</i>)
+          {result.name} (<i>{result.latin}</i>)
         </a>
       </Link>
     </div>

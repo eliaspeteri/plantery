@@ -30,7 +30,7 @@ const PlantsPage: NextPage<Props> = ({ plants }: Props) => {
               key={plant.id}
             >
               <a className={styles.plant}>
-                {plant.name}, (<i>{plant.scientificName}</i>)
+                {plant.name}, (<i>{plant.latin}</i>)
               </a>
             </Link>
           ))}

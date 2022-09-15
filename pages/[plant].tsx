@@ -20,7 +20,7 @@ const PlantPage: NextPage = ({ plant }: Props) => {
         {plant && (
           <div>
             <h2>
-              {plant.name}, (<i>{plant.scientificName}</i>)
+              {plant.name}, (<i>{plant.latin}</i>)
             </h2>
             <p>Created at {plant.createdAt?.toLocaleString()}</p>
             {plant.cultivation && (

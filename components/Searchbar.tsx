@@ -14,7 +14,7 @@ const Searchbar = () => {
     // If search matches data item, add to results
     const matches = data.filter((item) => {
       const regex = new RegExp(e.target.value, 'gi');
-      return item.name.match(regex) || item.scientificName.match(regex);
+      return item.name.match(regex) || item.latin.match(regex);
     });
     setResults(matches);
     // If search is empty, reset results

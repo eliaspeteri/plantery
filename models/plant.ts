@@ -9,7 +9,7 @@ const plantSchema: Schema = new Schema<Plant>({
     required: true,
     unique: true
   },
-  scientificName: {
+  latin: {
     type: String,
     required: true
   },
