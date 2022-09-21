@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
 import { Plant } from '../types';
-import { getPlant } from './api/plants/[plant]';
+import { getPlantById } from './api/plants/[plant]';
 import PlantModel from '../models/plant';
 
 interface Props {
@@ -55,6 +55,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const data = await getPlant(params.id);
+  const data = await getPlantById(params.id);
   return { props: { plant: data } };
 }
