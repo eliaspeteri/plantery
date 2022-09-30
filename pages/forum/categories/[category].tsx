@@ -1,13 +1,24 @@
-import { InferGetServerSidePropsType } from 'next';
-import { useRouter } from 'next/router';
-import React from 'react';
-import { getCategory } from '../../api/categories/[category]';
+import { InferGetServerSidePropsType } from "next";
+import { useRouter } from "next/router";
+import React from "react";
+import Button from "../../../components/Button";
+import { getCategory } from "../../api/categories/[category]";
 
 const CategoryPage = ({
-  category
+  category,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const router = useRouter();
-  return <div>{category?.title}</div>;
+  return (
+    <div>
+      <Button
+        onClick={() => router.push("/forum")}
+        style={{ margin: "2vh", padding: "2vh 3vw" }}
+      >
+        Back to forum
+      </Button>
+      {category?.title}id: {router.query.category}
+    </div>
+  );
 };
 
 export default CategoryPage;
@@ -17,11 +28,11 @@ export async function getServerSideProps({ req, res, query, params }) {
   console.log(category);
   if (category === undefined || category?.length === 0)
     return {
-      notFound: true
+      notFound: true,
     };
   return {
     props: {
-      category
-    }
+      category,
+    },
   };
 }
