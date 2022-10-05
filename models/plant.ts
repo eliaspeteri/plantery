@@ -9,6 +9,10 @@ const plantSchema: Schema = new Schema<Plant>({
     required: true,
     unique: true
   },
+  genus: {
+    type: String,
+    required: true
+  },
   latin: {
     type: String,
     required: true

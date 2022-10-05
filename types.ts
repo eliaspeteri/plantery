@@ -1,6 +1,7 @@
 export interface Plant extends Meta {
   id?: string;
   name: string;
+  genus: string;
   latin: string;
   description?: string;
   cultivation?: Cultivation;
