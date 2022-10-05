@@ -1,10 +1,10 @@
-import { NextPage } from "next";
-import Head from "next/head";
-import { useRouter } from "next/router";
-import React from "react";
-import Button from "../../components/Button";
-import { Plant } from "../../types";
-import { getPlantByName } from "../api/plants/[plant]";
+import { NextPage } from 'next';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import React from 'react';
+import Button from '../../../components/Button';
+import { Plant } from '../../../types';
+import { getPlantByName } from '../../api/plants/[plant]';
 
 interface Props {
   plant?: Plant;
@@ -15,10 +15,21 @@ const PlantPage: NextPage = ({ plant }: Props) => {
   return (
     <div>
       <Head>
-        <title>Plantery {(plant && `| ${plant.name}`) || "| Not Found"}</title>
+        <title>Plantery {(plant && `| ${plant.name}`) || '| Not Found'}</title>
       </Head>
       <div>
-        <Button onClick={() => router.push("/plants")}>Back to plants</Button>
+        <Button onClick={() => router.push('/plants')}>Back to plants</Button>
+        <Button
+          onClick={() =>
+            router.push(
+              `/plants/${plant?.latin
+                .replace(' ', '-')
+                .toLocaleLowerCase()}/edit`
+            )
+          }
+        >
+          Edit this plant
+        </Button>
         {plant && (
           <div>
             <h2>
@@ -30,7 +41,7 @@ const PlantPage: NextPage = ({ plant }: Props) => {
                 Keep temperature between {plant.cultivation?.temperature?.min}
                 &#176;C and {plant.cultivation?.temperature?.max}
                 &#176;C. Water {plant.cultivation?.water?.timesPerMonth} times
-                per month. Fertilize{" "}
+                per month. Fertilize{' '}
                 {plant.cultivation?.fertilizer?.timesPerMonth} times per month.
               </p>
             )}
@@ -44,6 +55,6 @@ const PlantPage: NextPage = ({ plant }: Props) => {
 export default PlantPage;
 
 export async function getServerSideProps({ params }) {
-  const data = await getPlantByName(params.plant.replace("-", " "));
+  const data = await getPlantByName(params.plant.replace('-', ' '));
   return { props: { plant: JSON.parse(data) } };
 }
