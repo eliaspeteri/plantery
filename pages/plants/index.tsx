@@ -57,11 +57,12 @@ const PlantsPage: NextPage<Props> = ({ results }: Props) => {
         >
           <HiArrowLeft />
         </Button>
+        {router.query.page}
         <Button
           style={{ display: 'inline-flex', margin: 'auto 1vw' }}
           onClick={() =>
             router.push(
-              `${router.route}?page=${parseInt(router.query.page) + 1}`
+              `${router.route}?page=${parseInt(router.query.page) + 1 || 1}`
             )
           }
         >
