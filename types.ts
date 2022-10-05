@@ -5,6 +5,13 @@ export interface Plant extends Meta {
   latin: string;
   description?: string;
   cultivation?: Cultivation;
+  region?:
+    | 'Antarctica'
+    | 'Eurasia'
+    | 'Indonesia'
+    | 'North America'
+    | 'South America'
+    | 'Oceania';
 }
 
 export interface PlantCategory {
