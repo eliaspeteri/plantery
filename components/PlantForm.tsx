@@ -1,6 +1,6 @@
 import { Formik, FormikValues, Form, Field, ErrorMessage } from 'formik';
 import React, { useState } from 'react';
-import { Errors } from '../types';
+import { Errors, Plant } from '../types';
 import Button from './Button';
 
 import styles from '../styles/Form.module.css';
@@ -8,25 +8,28 @@ import fieldStyles from '../styles/Field.module.css';
 
 interface Props {
   onSubmit: (values: Record<string, any>, setSubmitting: any) => void;
+  existingPlant?: Plant;
 }
 
-const PlantForm = ({ onSubmit }: Props) => {
+const PlantForm = ({ onSubmit, existingPlant }: Props) => {
   return (
     <Formik
       initialValues={{
-        name: '',
-        latin: '',
-        minTemp: '',
-        maxTemp: '',
-        minHumid: '',
-        maxHumid: '',
-        light: '',
-        watering: '',
-        waterTemp: '',
-        fertilizing: '',
-        minPh: '',
-        maxPh: '',
-        region: ''
+        name: existingPlant?.name || '',
+        genus: existingPlant?.genus || '',
+        latin: existingPlant?.latin || '',
+        minTemp: existingPlant?.cultivation?.temperature?.min || '',
+        maxTemp: existingPlant?.cultivation?.temperature?.max || '',
+        minHumid: existingPlant?.cultivation?.humidity?.min || '',
+        maxHumid: existingPlant?.cultivation?.humidity?.max || '',
+        light: existingPlant?.cultivation?.light || '',
+        watering: existingPlant?.cultivation?.water?.timesPerMonth || '',
+        waterTemp: existingPlant?.cultivation?.water?.temperature || '',
+        fertilizing:
+          existingPlant?.cultivation?.fertilizer?.timesPerMonth || '',
+        minPh: existingPlant?.cultivation?.acidity?.min || 0,
+        maxPh: existingPlant?.cultivation?.acidity?.max || 14,
+        region: existingPlant?.region || ''
       }}
       validate={(values) => {
         const errors: Errors = {};
@@ -36,16 +39,16 @@ const PlantForm = ({ onSubmit }: Props) => {
         if (!values.latin) {
           errors.latin = 'Required';
         }
-        if (parseInt(values.minPh) < 0 || parseInt(values.minPh) > 14) {
+        if (values.minPh < 0 || values.minPh > 14) {
           errors.minPh = 'Must be between 0 and 14';
         }
-        if (parseInt(values.maxPh) < 0 || parseInt(values.maxPh) > 14) {
+        if (values.maxPh < 0 || values.maxPh > 14) {
           errors.maxPh = 'Must be between 0 and 14';
         }
-        if (parseInt(values.minPh) > parseInt(values.maxPh)) {
+        if (values.minPh > values.maxPh) {
           errors.minPh = 'Must be less than maxPh';
         }
-        if (parseInt(values.maxPh) < parseInt(values.minPh)) {
+        if (values.maxPh < values.minPh) {
           errors.maxPh = 'Must be greater than minPh';
         }
 
